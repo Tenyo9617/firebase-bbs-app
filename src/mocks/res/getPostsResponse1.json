@@ -1,0 +1,105 @@
+[
+  {
+    "id": "post1",
+    "author": "user1",
+    "content": "aaa",
+    "created_at": "Wed Nov 18 10:05:29 +0000 2009",
+    "hashTags": ["ブロッコリー"],
+    "reactions": {
+      "thumbsUp": 1,
+      "heart": 1,
+      "commentsCount": 1
+    },
+    "comments": [{ "id": "comment1", "author": "user1", "comment": "aaaaaaaaaaaaa" }]
+  },
+  {
+    "id": "post2",
+    "author": "user2",
+    "content": "bbb",
+    "created_at": "Wed Nov 18 10:05:29 +0000 2010",
+    "hashTags": ["チーズ", "牛乳"],
+    "reactions": {
+      "thumbsUp": 2,
+      "heart": 2,
+      "commentsCount": 2
+    },
+    "comments": [
+      { "id": "comment1", "author": "user1", "comment": "aaaaaaaaaaaaa" },
+      { "id": "comment2", "author": "user2", "comment": "bbbbbbbbbbbbb" }
+    ]
+  },
+  {
+    "id": "post3",
+    "author": "user3",
+    "content": "ccc",
+    "created_at": "Wed Nov 18 10:05:29 +0000 2011",
+    "hashTags": ["カボチャ", "牛乳"],
+    "reactions": {
+      "thumbsUp": 3,
+      "heart": 3,
+      "commentsCount": 3
+    },
+    "comments": [
+      { "id": "comment1", "author": "user1", "comment": "aaaaaaaaaaaaa" },
+      { "id": "comment2", "author": "user2", "comment": "bbbbbbbbbbbbb" },
+      { "id": "comment3", "author": "user3", "comment": "ccccccccccccc" }
+    ]
+  },
+  {
+    "id": "post4",
+    "author": "user4",
+    "content": "ddd",
+    "created_at": "Wed Nov 18 10:05:29 +0000 2012",
+    "hashTags": ["うさぎ", "にんじん"],
+    "reactions": {
+      "thumbsUp": 4,
+      "heart": 4,
+      "commentsCount": 4
+    },
+    "comments": [
+      { "id": "comment1", "author": "user1", "comment": "aaaaaaaaaaaaa" },
+      { "id": "comment2", "author": "user2", "comment": "bbbbbbbbbbbbb" },
+      { "id": "comment3", "author": "user3", "comment": "ccccccccccccc" },
+      { "id": "comment4", "author": "user4", "comment": "ddddddddddddd" }
+    ]
+  },
+  {
+    "id": "post5",
+    "author": "user4",
+    "content": "eee",
+    "created_at": "Wed Nov 18 10:05:29 +0000 2013",
+    "hashTags": ["ねる", "たべる", "ボーとする"],
+    "reactions": {
+      "thumbsUp": 5,
+      "heart": 5,
+      "commentsCount": 5
+    },
+    "comments": [
+      { "id": "comment1", "author": "user1", "comment": "aaaaaaaaaaaaa" },
+      { "id": "comment2", "author": "user2", "comment": "bbbbbbbbbbbbb" },
+      { "id": "comment3", "author": "user3", "comment": "ccccccccccccc" },
+      { "id": "comment4", "author": "user4", "comment": "ddddddddddddd" },
+      { "id": "comment5", "author": "user5", "comment": "eeeeeeeeeeeee" }
+    ]
+  },
+  {
+    "id": "post6",
+    "author": "user6",
+    "content": "fff",
+    "created_at": "Wed Nov 18 10:05:29 +0000 2014",
+    "hashTags": ["へんなゆめをみた"],
+    "reactions": {
+      "thumbsUp": 6,
+      "heart": 6,
+      "commentsCount": 6
+    },
+    "comments": [
+      { "id": "comment1", "author": "user1", "comment": "aaaaaaaaaaaaa" },
+      { "id": "comment2", "author": "user2", "comment": "bbbbbbbbbbbbb" },
+      { "id": "comment3", "author": "user3", "comment": "ccccccccccccc" },
+      { "id": "comment4", "author": "user4", "comment": "ddddddddddddd" },
+      { "id": "comment5", "author": "user5", "comment": "eeeeeeeeeeeee" },
+      { "id": "comment6", "author": "user6", "comment": "fffffffffffff" }
+    ]
+  }
+]

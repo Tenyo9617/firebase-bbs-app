@@ -1,0 +1,16 @@
+[
+  {
+    "id": "post7",
+    "author": "user7",
+    "content": "aaa",
+    "created_at": "Wed Nov 18 10:05:29 +0000 2009",
+    "hashTags": ["ブロッコリー"],
+    "reactions": {
+      "thumbsUp": 1,
+      "heart": 1,
+      "commentsCount": 1
+    },
+    "comments": [{ "id": "comment1", "author": "user1", "comment": "aaaaaaaaaaaaa" }]
+  }
+  
+]
