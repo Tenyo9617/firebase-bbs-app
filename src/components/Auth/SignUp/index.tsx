@@ -60,7 +60,12 @@ export default function SignUp() {
         console.log(err.message);
       });
   };
-
+  const validate = (value: FormValues['confirmPassword'], values: FormValues) => {
+    // Perform custom validation here
+    if (value !== values.password) {
+      return 'Passwords do not match';
+    }
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -148,7 +153,7 @@ export default function SignUp() {
                     />
                   )}
                   name="confirmPassword"
-                  rules={{ required: true }}
+                  rules={{ validate }}
                   control={control}
                 ></Controller>
               </Grid>
