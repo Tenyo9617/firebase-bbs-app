@@ -17,14 +17,13 @@ export const handlers = [
   }),
 
   rest.get('/post', (req, res, ctx) => {
-    
-    if(Math.random() > .5)
-    {
-      console.log("Json1");
-      return res(ctx.status(200), ctx.json(getPostsJson1))}
-    else {
-      console.log("Json2");
-      return res(ctx.status(200), ctx.json(getPostsJson2))}
+    if (Math.random() > 0.5) {
+      console.log('Json1');
+      return res(ctx.status(200), ctx.json(getPostsJson1));
+    } else {
+      console.log('Json2');
+      return res(ctx.status(200), ctx.json(getPostsJson2));
+    }
   }),
   rest.get('/user', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(getUsersJson));
