@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import { store } from './state/store';
+import { setupStore } from './state/store';
 import theme from './theme/style';
 
 if (process.env.NODE_ENV === 'development') {
@@ -14,6 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   worker.start();
 }
 
+const store = setupStore({});
 const container = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);

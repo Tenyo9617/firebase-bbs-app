@@ -33,7 +33,7 @@ const App: React.FC = () => {
     } else if (isError && error) {
       if ('status' in error) {
         return (
-          <Alert variant="filled" severity="error" data-testId="errAlert">
+          <Alert variant="filled" severity="error">
             An error has occurred:
             {error.status}
           </Alert>

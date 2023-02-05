@@ -16,7 +16,8 @@ export const handlers = [
     );
   }),
 
-  rest.get('/post', (req, res, ctx) => {
+  rest.get('http://localhost:3000/post', (req, res, ctx) => {
+    // rest.get('/post', (req, res, ctx) => {
     if (Math.random() > 0.5) {
       console.log('Json1');
       return res(ctx.status(200), ctx.json(getPostsJson1));
@@ -25,7 +26,8 @@ export const handlers = [
       return res(ctx.status(200), ctx.json(getPostsJson2));
     }
   }),
-  rest.get('/user', (req, res, ctx) => {
+  rest.get('http://localhost:3000/user', (req, res, ctx) => {
+    // rest.get('/user', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(getUsersJson));
   }),
 ];

@@ -1,4 +1,4 @@
-import { getAnalytics } from 'firebase/analytics';
+// import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -18,4 +18,10 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
+// const analyticsMock = {
+//   logEvent: () => {},
+//   setCurrentScreen: () => {},
+//   setUserId: () => {},
+// }
+// export const analytics = analytics.isSupported() ? getAnalytics(app) : analyticsMock

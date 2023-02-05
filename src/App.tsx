@@ -5,7 +5,7 @@ import Login from './components/Auth/Login';
 import SignUp from './components/Auth/SignUp';
 import Home from './components/Home';
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
