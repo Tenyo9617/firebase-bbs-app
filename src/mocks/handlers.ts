@@ -18,13 +18,13 @@ export const handlers = [
 
   rest.get('http://localhost:3000/post', (req, res, ctx) => {
     // rest.get('/post', (req, res, ctx) => {
-    if (Math.random() > 0.5) {
-      console.log('Json1');
-      return res(ctx.status(200), ctx.json(getPostsJson1));
-    } else {
-      console.log('Json2');
-      return res(ctx.status(200), ctx.json(getPostsJson2));
-    }
+    // if (Math.random() > 0.5) {
+    //   console.log('Json1');
+    return res(ctx.status(200), ctx.json(getPostsJson1));
+    // } else {
+    //   console.log('Json2');
+    //   return res(ctx.status(200), ctx.json(getPostsJson2));
+    // }
   }),
   rest.get('http://localhost:3000/user', (req, res, ctx) => {
     // rest.get('/user', (req, res, ctx) => {

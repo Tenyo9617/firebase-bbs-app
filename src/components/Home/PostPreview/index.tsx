@@ -36,6 +36,7 @@ const PostPreview: React.FunctionComponent<Props> = (props) => {
       sx={[{ width: '100%' }, { boxShadow: 'none' }, { '&:hover': { bgcolor: lightGreen[50], cursor: 'pointer' } }]}
       className={className}
       onClick={onClick}
+      data-testid="post-card"
     >
       <CardContent sx={{ p: 3 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

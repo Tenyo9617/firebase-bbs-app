@@ -21,7 +21,7 @@ const App: React.FC = () => {
 
   const getContent = () => {
     if (isLoading) {
-      return <Skeleton animation="wave" />;
+      return <Skeleton animation="wave" data-testid="loading-skeleton" />;
     } else if (isSuccess) {
       return (
         <Container maxWidth="xl">
