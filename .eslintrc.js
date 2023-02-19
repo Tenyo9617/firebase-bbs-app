@@ -11,6 +11,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
+    'plugin:jest-dom/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -24,7 +25,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  plugins: ['unused-imports', 'simple-import-sort'],
+  plugins: ['unused-imports', 'simple-import-sort', 'jest-dom', 'testing-library'],
   ignorePatterns: ['build', 'yarn.lock', '**/mocks'],
   rules: {
     'unused-imports/no-unused-imports': 'off',
@@ -48,4 +49,10 @@ module.exports = {
     'react/prop-types': 'off',
     // 'eslint max-len': ['error', { code: 120 }],
   },
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+  ],
 };
