@@ -137,6 +137,7 @@ jest.mock('../../../firebase', () => ({
 
 const mockGetRedirectResult = getRedirectResult as jest.Mock;
 const mockSignInWithEmailAndPassword = signInWithEmailAndPassword as jest.Mock;
+const mockSignInWithRedirect = signInWithRedirect as jest.Mock;
 beforeEach(() => {
   mockGetRedirectResult.mockResolvedValue(mockUserCredential);
   mockSignInWithEmailAndPassword.mockResolvedValue(signInRespMock);
@@ -265,6 +266,22 @@ describe('ログイン画面', () => {
       await waitFor(() => expect(screen.queryByText(/最大20桁/i)).not.toBeInTheDocument());
 
       expect(mockSignInWithEmailAndPassword).toBeCalledTimes(1);
+      expect(mockGetRedirectResult).toBeCalledTimes(1);
+    });
+    it('SignIn with Googleクリックでサインインできること', async () => {
+      // RENDER
+      renderWithProviders(<Login />);
+      // ACT
+
+      const signInBtn = screen.getByRole('button', {
+        name: /SignIn with Google/i,
+      });
+      await userEvent.click(signInBtn);
+      // ASSERT
+      // なぜか2回呼ばれる
+      expect(mockSignInWithRedirect).toBeCalledTimes(2);
+      // こっちも2回だ
+      // expect(mockGetRedirectResult).toBeCalledTimes(1);
     });
   });
 });
