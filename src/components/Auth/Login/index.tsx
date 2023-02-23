@@ -22,6 +22,10 @@ import { useAppDispatch } from 'state/hooks';
 // https://zenn.dev/nabettu/articles/339cb60d7fcc05e05b90
 library.add(faGoogle as IconDefinition);
 
+import { yupResolver } from '@hookform/resolvers/yup';
+// import axios from 'axios';
+import * as yup from 'yup';
+
 import { auth, googleProvider } from '../../../firebase';
 import { FormValues } from './types';
 
@@ -40,6 +44,10 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
+const schema = yup.object().shape({
+  email: yup.string().required('必須項目です').email('形式が不正です'),
+  password: yup.string().required('必須項目です').min(8, '8桁以上必須').max(20, '最大20桁'),
+});
 export default function SignInSide() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -52,13 +60,14 @@ export default function SignInSide() {
       email: '',
       password: '',
     },
+    resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
-        console.log(userCredential.user);
+        console.log(userCredential);
 
         // navigate('/', { replace: true });
       })
@@ -74,10 +83,10 @@ export default function SignInSide() {
   };
 
   useEffect(() => {
+    // console.log('getRedirectResult', getRedirectResult(auth));
+
     getRedirectResult(auth)
       .then((result) => {
-        console.log('getRedirectResult');
-
         if (result) {
           // The signed-in user info.
           const user = result.user;
@@ -85,8 +94,8 @@ export default function SignInSide() {
           const email = user.email ?? '';
           const displayName = user.displayName ?? '';
           const photoURL = user.photoURL ?? '';
-          console.log('result', result);
-          console.log('user', user);
+          // console.log('result', result);
+          // console.log('user', user);
           // navigate('/', { replace: true });
         }
       })
@@ -94,6 +103,15 @@ export default function SignInSide() {
         console.error(error);
       });
   });
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const axiosRes = await axios.get('https://jsonplaceholder.typicode.com/users');
+
+  //     console.log(axiosRes.data);
+  //   };
+  //   fetchData();
+  // }, []);
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -142,10 +160,9 @@ export default function SignInSide() {
                   />
                 )}
                 name="email"
-                rules={{ required: true }}
                 control={control}
-              ></Controller>
-              {errors?.email?.type === 'required' && <Alert severity="error">This field is required</Alert>}
+              />
+              {errors.email && <Alert severity="error">{errors.email.message}</Alert>}
               <Controller
                 render={({ field }) => (
                   <TextField
@@ -159,10 +176,9 @@ export default function SignInSide() {
                   />
                 )}
                 name="password"
-                rules={{ required: true }}
                 control={control}
-              ></Controller>
-              {errors?.password?.type === 'required' && <Alert severity="error">This field is required</Alert>}
+              />
+              {errors.password && <Alert severity="error">{errors.password.message}</Alert>}
               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Sign In
               </Button>
