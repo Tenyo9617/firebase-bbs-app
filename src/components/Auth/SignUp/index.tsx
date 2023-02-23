@@ -1,5 +1,6 @@
 import { faCheese } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -14,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link as RouterLink } from 'react-router-dom';
+import * as yup from 'yup';
 
 import { auth } from '../../../firebase';
 import { FormValues } from './types';
@@ -33,6 +35,13 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
+const schema = yup.object().shape({
+  email: yup.string().required('必須項目です').email('形式が不正です'),
+  displayName: yup.string().required('必須項目です'),
+  password: yup.string().required('必須項目です').min(8, '8桁以上必須').max(20, '最大20桁'),
+  confirmPassword: yup.string().oneOf([yup.ref('password'), undefined], 'パスワードが一致しません'),
+});
+
 export default function SignUp() {
   const {
     control,
@@ -45,11 +54,9 @@ export default function SignUp() {
       password: '',
       confirmPassword: '',
     },
+    resolver: yupResolver(schema),
   });
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
-    if (data.password !== data.confirmPassword) console.log('パスワードが一致しません');
-
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         console.log(userCredential);
@@ -59,12 +66,6 @@ export default function SignUp() {
         console.log(err.code);
         console.log(err.message);
       });
-  };
-  const validate = (value: FormValues['confirmPassword'], values: FormValues) => {
-    // Perform custom validation here
-    if (value !== values.password) {
-      return 'Passwords do not match';
-    }
   };
   return (
     <ThemeProvider theme={theme}>
@@ -100,13 +101,12 @@ export default function SignUp() {
                     />
                   )}
                   name="email"
-                  rules={{ required: true }}
                   control={control}
-                ></Controller>
+                />
               </Grid>
-              {errors?.email?.type === 'required' && (
+              {errors.email && (
                 <Grid item xs={12}>
-                  <Alert severity="error">This field is required</Alert>
+                  <Alert severity="error">{errors.email.message}</Alert>
                 </Grid>
               )}
 
@@ -116,13 +116,12 @@ export default function SignUp() {
                     <TextField {...field} required fullWidth id="displayName" label="ニックネーム" autoComplete="on" />
                   )}
                   name="displayName"
-                  rules={{ required: true }}
                   control={control}
-                ></Controller>
+                />
               </Grid>
-              {errors?.displayName?.type === 'required' && (
+              {errors.displayName && (
                 <Grid item xs={12}>
-                  <Alert severity="error">This field is required</Alert>
+                  <Alert severity="error">{errors.displayName.message}</Alert>
                 </Grid>
               )}
               <Grid item xs={12}>
@@ -131,13 +130,12 @@ export default function SignUp() {
                     <TextField {...field} required fullWidth label="パスワード" type="password" id="password" />
                   )}
                   name="password"
-                  rules={{ required: true }}
                   control={control}
-                ></Controller>
+                />
               </Grid>
-              {errors?.password?.type === 'required' && (
+              {errors.password && (
                 <Grid item xs={12}>
-                  <Alert severity="error">This field is required</Alert>
+                  <Alert severity="error">{errors.password.message}</Alert>
                 </Grid>
               )}
               <Grid item xs={12}>
@@ -153,13 +151,12 @@ export default function SignUp() {
                     />
                   )}
                   name="confirmPassword"
-                  rules={{ validate }}
                   control={control}
-                ></Controller>
+                />
               </Grid>
-              {errors?.confirmPassword?.type === 'required' && (
+              {errors.confirmPassword && (
                 <Grid item xs={12}>
-                  <Alert severity="error">This field is required</Alert>
+                  <Alert severity="error">{errors.confirmPassword.message}</Alert>
                 </Grid>
               )}
             </Grid>
